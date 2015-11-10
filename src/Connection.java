@@ -14,7 +14,7 @@ public class Connection {
         this.socket = s;
        // in = new DataInputStream(s.getInputStream());
       //  out = new DataOutputStream(s.getOutputStream());
-      
+
     }
     
     public ServerSocket getSs() {
