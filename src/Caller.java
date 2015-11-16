@@ -19,15 +19,15 @@ public class Caller {
         ip ="127.0.0.1";
     }
 
-    public Caller(java.lang.String localNick) {
+    public Caller(String localNick) {
         this.localNick=localNick;
     }
-    public Caller(java.lang.String localNick, java.net.SocketAddress remoteAddress) {
+    public Caller(String localNick, SocketAddress remoteAddress) {
         this.localNick=localNick;
         this.remoteAddress=remoteAddress;
     }
 
-    public Caller(java.lang.String localNick, java.lang.String ip){
+    public Caller(String localNick, String ip){
         this.localNick=localNick;
         this.ip=ip;
     }
@@ -64,11 +64,11 @@ public class Caller {
         return status;
     }
 
-    public void setLocalNick(java.lang.String localNick){
+    public void setLocalNick(String localNick){
         this.localNick = localNick;
     }
 
-    public void setRemoteAddress(java.net.SocketAddress remoteAddress){
+    public void setRemoteAddress(SocketAddress remoteAddress){
         this.localNick = localNick;
     }
 
@@ -76,7 +76,7 @@ public class Caller {
         return "Local nick: " + localNick + ", IP: " + ip + ", remote nick: " + remoteNick + ", remote address: " + remoteAddress;
     }
 
-    public static void main(java.lang.String[] args){
+    public static void main(String[] args){
 
     }
 
