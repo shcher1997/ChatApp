@@ -1,16 +1,12 @@
 public class Command {
     private CommandType comType;
 
+    static enum CommandType{ ACCEPT, DISCONNECT, MESSAGE, NICK, REJECT }
+
     public Command(CommandType t) {
         this.comType = t;
     }
 
-    static enum CommandType{
-        ACCEPT, DISCONNECT, MESSAGE, NICK, REJECT
-    }
-
-    public String toString(){
-        return comType.toString();
-    }
+    public String toString(){ return comType.toString(); }
 
 }
