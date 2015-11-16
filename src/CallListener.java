@@ -36,8 +36,14 @@ public class CallListener extends java.lang.Object{
         }
 
     }
+    public String getLocalIp(){
+        return localIp;
+    }
+    public void setLocalIp (String localIp){
+        this.localIp=localIp;
+    }
 
-    public java.lang.String getLocalNick() {
+    public String getLocalNick() {
         return localNick;
     }
 
@@ -45,15 +51,15 @@ public class CallListener extends java.lang.Object{
         return busy;
     }
 
-    public java.net.SocketAddress getListenAddress() {
+    public SocketAddress getListenAddress() {
         return listenAddress;
     }
 
-    public java.lang.String getRemoteNick() {
+    public String getRemoteNick() {
         return remoteNick;
     }
 
-    public java.net.SocketAddress getRemoteAddress(){
+    public SocketAddress getRemoteAddress(){
         return remoteAddress;
     }
 
@@ -69,7 +75,7 @@ public class CallListener extends java.lang.Object{
         this.listenAddress = listenAddress;
     }
 
-    public static void main(java.lang.String args[]){
+    public static void main(String args[]){
 
     }
 
