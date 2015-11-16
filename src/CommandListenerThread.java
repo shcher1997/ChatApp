@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public class CommandListenerThread implements Runnable {
     private Connection connect;
@@ -32,6 +33,13 @@ public class CommandListenerThread implements Runnable {
     }
 
     public void run() {
+        while (!isDisconnected){
+            try {
+                lastCom = connect.receive();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
