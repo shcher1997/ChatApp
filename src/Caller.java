@@ -7,7 +7,7 @@ import java.sql.Connection;
 public class Caller {
     private String localNick;
     private SocketAddress remoteAddress;
-    private String RemoteNick;
+    private String remoteNick;
     private boolean status;
     private String ip;
 
@@ -15,8 +15,8 @@ public class Caller {
 
 
     public Caller(){
-        this.localNick=getLocalNick();
-        this.remoteAddress=getRemoteAddress();
+        remoteNick = "localNick";
+        ip ="127.0.0.1";
     }
 
     public Caller(java.lang.String localNick) {
@@ -37,12 +37,15 @@ public class Caller {
     }
 
     Connection call(Connection call) throws IOException {
-        Socket socket = null;
-        socket.connect(new InetSocketAddress(ip, 8882));
-        return call = new Connection(socket);
-        // if (status) {
-        //   return call = new Connection(socket);
-        // }
+        try {
+            Socket socket = new Socket();
+            socket.connect(this.remoteAddress);
+            Connection connection = new Connection(socket);
+            return connection;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public java.lang.String getLocalNick(){
@@ -54,7 +57,7 @@ public class Caller {
     }
 
     public java.lang.String getRemoteNick(){
-        return RemoteNick;
+        return remoteNick;
     }
 
     public Caller.CallStatus getStatus(){
@@ -69,9 +72,9 @@ public class Caller {
         this.localNick = localNick;
     }
 
-    // public java.lang.String toString(){
-
-    //  }
+    public String toString() {
+        return "Local nick: " + localNick + ", IP: " + ip + ", remote nick: " + remoteNick + ", remote address: " + remoteAddress;
+    }
 
     public static void main(java.lang.String[] args){
 
