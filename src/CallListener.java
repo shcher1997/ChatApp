@@ -1,9 +1,10 @@
 
 
+import java.io.IOException;
 import java.net.*;
-import java.sql.Connection;
+//import java.sql.Connection;
 
-public class CallListener extends java.lang.Object{
+public class CallListener {
     public static final int localPort = 28411;
     private String localNick;
     private String remoteNick;
@@ -25,15 +26,22 @@ public class CallListener extends java.lang.Object{
         this.localIp=localIp;
     }
 
-    public Connection getConnection() throws java.io.IOException {
-        if (isBusy()) {
+    public Connection getConnection() throws IOException {
+        ServerSocket servSocket = new ServerSocket(localPort);
+        Socket socket = servSocket.accept();
+        Connection connection=new Connection(socket);
+       // if (isBusy()) {
             return null;
-        }
-        else {
-            ServerSocket serversocket = new ServerSocket(localPort);
-            Connection connection = new Connection(serversocket.accept(), localNick);
-            return connection;
-        }
+       // }
+        //else {
+
+
+          //  ServerSocket serversocket = new ServerSocket(localPort);
+     //       return new Connection(serverSocket.accept());
+          //  Connection connection = new Connection(serversocket.accept(), localNick);
+          //  return connection;
+        //    return getConnection();
+        //}
 
     }
     public String getLocalIp(){
