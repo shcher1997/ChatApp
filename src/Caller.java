@@ -8,7 +8,7 @@ public class Caller {
     private String localNick;
     private SocketAddress remoteAddress;
     private String remoteNick;
-    private boolean status;
+    private CallStatus status;
     private String ip;
 
     public Caller(){
@@ -57,9 +57,8 @@ public class Caller {
         return remoteNick;
     }
 
-    public Caller.CallStatus getStatus(){///don't sure
-   // return status;
-        return null;
+    public Caller.CallStatus getStatus(){
+        return status;
     }
 
     public void setLocalNick(String localNick){
