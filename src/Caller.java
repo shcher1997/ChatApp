@@ -1,7 +1,7 @@
 
 import java.io.IOException;
 import java.net.*;
-import java.sql.Connection;
+
 
 
 public class Caller {
@@ -60,9 +60,9 @@ public class Caller {
         return remoteNick;
     }
 
-    public Caller.CallStatus getStatus(){
-        return status;
-    }
+  //  public Caller.CallStatus getStatus(){
+    //return status;
+    //}
 
     public void setLocalNick(String localNick){
         this.localNick = localNick;
