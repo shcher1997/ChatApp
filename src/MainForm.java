@@ -16,7 +16,7 @@ public class MainForm extends  JFrame {
     public MainForm(){
         setContentPane(panel1);
         setTitle("Incoming connection");
-        setSize(400,200);
+        setSize(700,600);
         setVisible(true);
     }
     public static void main (String [] args){
