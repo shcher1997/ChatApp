@@ -11,9 +11,6 @@ public class Caller {
     private boolean status;
     private String ip;
 
-
-
-
     public Caller(){
         remoteNick = "localNick";
         ip ="127.0.0.1";
@@ -32,7 +29,7 @@ public class Caller {
         this.ip=ip;
     }
 
-    private static enum CallStatus {
+    public static enum CallStatus {
         BUSY, NO_SERVICE, NOT_ACCeSIBLE, OK, REJECTED
     }
 
@@ -60,9 +57,10 @@ public class Caller {
         return remoteNick;
     }
 
-  //  public Caller.CallStatus getStatus(){
-    //return status;
-    //}
+    public Caller.CallStatus getStatus(){///don't sure
+   // return status;
+        return null;
+    }
 
     public void setLocalNick(String localNick){
         this.localNick = localNick;
