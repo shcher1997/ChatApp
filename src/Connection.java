@@ -6,7 +6,7 @@ public class Connection {
     private ServerSocket ss;
     private Socket socket;
     private final static int PORT = 28411;
-    private final static String CODING = "28411";
+    private final static String CODING = "UTF-8";
     DataInputStream in;
     DataOutputStream out;
 
