@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Connection {
     private ServerSocket ss;
@@ -9,6 +10,8 @@ public class Connection {
     private final static String CODING = "UTF-8";
     DataInputStream in;
     DataOutputStream out;
+    private static final char nextL = '\n';
+
 
     public Connection(Socket s) throws IOException {
         this.socket = s;
@@ -16,7 +19,7 @@ public class Connection {
       //  out = new DataOutputStream(s.getOutputStream());
 
     }
-    
+
     public ServerSocket getSs() {
         return ss;
     }
@@ -68,6 +71,26 @@ public class Connection {
         socket.shutdownOutput();
         socket.close();
     }
-   //add Command receive
-    //main
+
+    public Command receive() throws IOException{
+        StringBuffer sb = new StringBuffer();
+        char ch;
+      //  Command command;
+        while((ch=(char)in.readByte())!=nextL)
+            sb.append(ch);
+        String str = sb.toString();
+        if(str.toUpperCase().startsWith("CHATAPP 2015 USER")){
+            Scanner sc = new Scanner(str);
+            sc.next();
+            return new NickCommand(sc.next(),sc.skip("[a-z,A_Z]{4}").next(),str.toUpperCase().endsWith("BUSY"));
+        }else if("MESSAGE".equalsIgnoreCase(str)){
+            sb = new StringBuffer();
+            while ((ch = (char)in.readByte())!=nextL)
+                sb.append(ch);
+            return new MessageCommand(sb.toString());
+        }else if (str.toUpperCase().lastIndexOf("ED")>-1)
+            str = str.toUpperCase().replace("ED","");
+        return new Command(Command.CommandType.valueOf(str));
+    }
+
 }
