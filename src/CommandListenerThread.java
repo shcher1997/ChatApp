@@ -1,6 +1,7 @@
 import java.io.IOException;
+import java.util.Observable;
 
-public class CommandListenerThread implements Runnable {
+public class CommandListenerThread extends Observable implements Runnable {
     private Connection connect;
     private Command lastCom;
     private volatile boolean isDisconnected;
@@ -35,11 +36,15 @@ public class CommandListenerThread implements Runnable {
     public void run() {
         while (!isDisconnected){
             try {
-                lastCom = connect.receive();
+                this.lastCom = connect.receive();
+                setChanged();
+                notifyObservers();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+
 
     }
 
