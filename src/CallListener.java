@@ -1,10 +1,12 @@
-
+/**
+ * Created by ���� on 01.11.2015.
+ */
 
 import java.io.IOException;
 import java.net.*;
-//import java.sql.Connection;
 
-public class CallListener {
+
+public class CallListener extends java.lang.Object{
     public static final int localPort = 28411;
     private String localNick;
     private String remoteNick;
@@ -26,32 +28,20 @@ public class CallListener {
         this.localIp=localIp;
     }
 
-    public Connection getConnection() throws IOException {
-        ServerSocket servSocket = new ServerSocket(localPort);
-        Socket socket = servSocket.accept();
-        Connection connection=new Connection(socket);
-       // if (isBusy()) {
+    public Connection getConnection() throws java.io.IOException {
+        if (isBusy()) {
             return null;
-       // }
-        //else {
-
-
-          //  ServerSocket serversocket = new ServerSocket(localPort);
-     //       return new Connection(serverSocket.accept());
-          //  Connection connection = new Connection(serversocket.accept(), localNick);
-          //  return connection;
-        //    return getConnection();
-        //}
+        }
+        else {
+            ServerSocket serversocket = new ServerSocket(localPort);
+            Socket socket = serversocket.accept();
+            Connection connection = new Connection(socket);
+            return connection;
+        }
 
     }
-    public String getLocalIp(){
-        return localIp;
-    }
-    public void setLocalIp (String localIp){
-        this.localIp=localIp;
-    }
 
-    public String getLocalNick() {
+    public java.lang.String getLocalNick() {
         return localNick;
     }
 
@@ -63,7 +53,7 @@ public class CallListener {
         return listenAddress;
     }
 
-    public String getRemoteNick() {
+    public java.lang.String getRemoteNick() {
         return remoteNick;
     }
 
@@ -88,4 +78,3 @@ public class CallListener {
     }
 
 }
-
