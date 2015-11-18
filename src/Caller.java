@@ -1,35 +1,38 @@
 
+
 import java.io.IOException;
 import java.net.*;
-
 
 
 public class Caller {
     private String localNick;
     private SocketAddress remoteAddress;
     private String remoteNick;
-    private CallStatus status;
+    private boolean status;
     private String ip;
+    private String CallStatus;
+
+
 
     public Caller(){
         remoteNick = "localNick";
         ip ="127.0.0.1";
     }
 
-    public Caller(String localNick) {
+    public Caller(java.lang.String localNick) {
         this.localNick=localNick;
     }
-    public Caller(String localNick, SocketAddress remoteAddress) {
+    public Caller(java.lang.String localNick, java.net.SocketAddress remoteAddress) {
         this.localNick=localNick;
         this.remoteAddress=remoteAddress;
     }
 
-    public Caller(String localNick, String ip){
+    public Caller(java.lang.String localNick, java.lang.String ip){
         this.localNick=localNick;
         this.ip=ip;
     }
 
-    public static enum CallStatus {
+    private static enum CallStatus {
         BUSY, NO_SERVICE, NOT_ACCeSIBLE, OK, REJECTED
     }
 
@@ -38,6 +41,7 @@ public class Caller {
             Socket socket = new Socket();
             socket.connect(this.remoteAddress);
             Connection connection = new Connection(socket);
+            connection.sendNickHello(localNick);
             return connection;
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,15 +61,15 @@ public class Caller {
         return remoteNick;
     }
 
-    public Caller.CallStatus getStatus(){
-        return status;
+    public String getStatus(){
+        return CallStatus;
     }
 
-    public void setLocalNick(String localNick){
+    public void setLocalNick(java.lang.String localNick){
         this.localNick = localNick;
     }
 
-    public void setRemoteAddress(SocketAddress remoteAddress){
+    public void setRemoteAddress(java.net.SocketAddress remoteAddress){
         this.localNick = localNick;
     }
 
@@ -73,11 +77,12 @@ public class Caller {
         return "Local nick: " + localNick + ", IP: " + ip + ", remote nick: " + remoteNick + ", remote address: " + remoteAddress;
     }
 
-    public static void main(String[] args){
+    public static void main(java.lang.String[] args){
 
     }
 
 
 
 }
+
 
