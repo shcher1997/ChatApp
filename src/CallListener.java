@@ -77,4 +77,7 @@ public class CallListener extends java.lang.Object{
 
     }
 
+    public void setLocalIp(String localIp) {
+        this.localIp = localIp;
+    }
 }

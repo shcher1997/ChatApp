@@ -32,7 +32,7 @@ public class Caller {
         this.ip=ip;
     }
 
-    private static enum CallStatus {
+    static enum CallStatus {
         BUSY, NO_SERVICE, NOT_ACCeSIBLE, OK, REJECTED
     }
 
