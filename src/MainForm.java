@@ -19,6 +19,7 @@ public class MainForm extends  JFrame {
         setTitle("Incoming connection");
         setSize(700,600);
         setVisible(true);
+        
 
     /*    sendButton.addActionListener(ActionEvent e){
 
