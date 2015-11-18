@@ -63,7 +63,6 @@ public class MainForm extends  JFrame {
 
         });
         disconnectButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     connect.disconnect();
@@ -74,7 +73,6 @@ public class MainForm extends  JFrame {
         });
 
         remlog.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 call.setRemoteNick(remlog.getText());
             }
@@ -88,7 +86,6 @@ public class MainForm extends  JFrame {
         //this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         sendButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 if(!messageField.getText().equals("")){
                     try {
@@ -101,6 +98,35 @@ public class MainForm extends  JFrame {
                 }
             }
         });
+
+
+        applyButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (!loclog.getText().isEmpty()) {
+                    call.setLocalNick(loclog.getText());
+                    connectButton.setEnabled(true);
+                    remaddr.setEnabled(true);
+                    remlog.setEnabled(true);
+                    loclog.setEnabled(false);
+                    applyButton.setEnabled(false);
+
+                    Runnable runnable = new Runnable() {
+                        public void run() {
+                            try {
+                                callListener= new CallListener();
+                                callListener.setLocalNick(call.getLocalNick());
+                                comServer = new CommandListenerThread(callListener.getConnection());
+                                comServer.start();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                    };
+                    new Thread(runnable).start();
+                }
+            }
+        });
+
     }
 
 
