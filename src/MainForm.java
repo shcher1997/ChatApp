@@ -12,7 +12,7 @@ public class MainForm extends  JFrame {
     private JTextField remaddr;
     private JButton applyButton;
     private JButton sendButton;
-    private JTextField textField4;
+    private JTextField messageField;
     private JScrollBar scrollBar1;
     private JTextArea textArea1;
 
@@ -87,29 +87,22 @@ public class MainForm extends  JFrame {
         });
         //this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-
-    /*    sendButton.addActionListener(ActionEvent e){
-
-
-        }*/
+        sendButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!messageField.getText().equals("")){
+                    try {
+                        textArea1.append(messageField.getText()+"\n");
+                        messageField.setText("");
+                        connect.sendMessage(messageField.getText());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
-
-    /*
-    try {
-					if (!messageArea.getText().equals("")) {
-						connection.sendMessage(messageArea.getText());
-						model.addMessage(nickField.getText(), new Date(), messageArea.getText());
-
-						textArea.update(model, new Object());
-						messageArea.setText("");
-
-					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-     */
 
     public static void main (String [] args){
         new MainForm();
