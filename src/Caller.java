@@ -32,6 +32,14 @@ public class Caller {
         this.ip=ip;
     }
 
+    public void setRemoteNick(String remoteNick) {
+        this.remoteNick = remoteNick;
+    }
+
+    public void setIp(java.lang.String ip){
+        this.ip = ip;
+    }
+
     static enum CallStatus {
         BUSY, NO_SERVICE, NOT_ACCeSIBLE, OK, REJECTED
     }
