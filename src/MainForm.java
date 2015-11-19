@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class MainForm extends  JFrame {
@@ -99,16 +101,24 @@ public class MainForm extends  JFrame {
             }
         });
 
+        loclog.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyChar() == '\n')
+                    applyButton.doClick();
+                super.keyPressed(e);
+            }
+        });
+
 
         applyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (!loclog.getText().isEmpty()) {
                     call.setLocalNick(loclog.getText());
-                    connectButton.setEnabled(true);
+                    /*connectButton.setEnabled(true);
                     remaddr.setEnabled(true);
                     remlog.setEnabled(true);
                     loclog.setEnabled(false);
-                    applyButton.setEnabled(false);
+                    applyButton.setEnabled(false);*/
 
                     Runnable runnable = new Runnable() {
                         public void run() {
