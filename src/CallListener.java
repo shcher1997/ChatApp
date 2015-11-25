@@ -15,20 +15,21 @@ public class CallListener extends java.lang.Object{
     private SocketAddress remoteAddress, listenAddress;
 
     CallListener(){
-        this.localNick="localNick";
+        this.localNick=localNick;
         this.localIp="127.0.0.1";
+       // this.localIp = "172.16.48.102";
     }
 
-    public CallListener(java.lang.String localNick) {
+    public CallListener(String localNick) {
         this.localNick=localNick;
     }
 
-    public CallListener(java.lang.String localNick, java.lang.String localIp) {
+    public CallListener(String localNick, String localIp) {
         this.localNick=localNick;
         this.localIp=localIp;
     }
 
-    public Connection getConnection() throws java.io.IOException {
+    public Connection getConnection() throws IOException {
         if (isBusy()) {
             return null;
         }
@@ -61,7 +62,7 @@ public class CallListener extends java.lang.Object{
         return remoteAddress;
     }
 
-    public void setLocalNick(java.lang.String localNick) {
+    public void setLocalNick(String localNick) {
         this.localNick = localNick;
     }
 
