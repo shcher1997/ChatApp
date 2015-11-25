@@ -11,6 +11,7 @@ public class Caller {
     private boolean status;
     private String ip;
     private String CallStatus;
+    private Socket s;
 
 
 
@@ -19,15 +20,15 @@ public class Caller {
         ip ="127.0.0.1";
     }
 
-    public Caller(java.lang.String localNick) {
+    public Caller(String localNick) {
         this.localNick=localNick;
     }
-    public Caller(java.lang.String localNick, java.net.SocketAddress remoteAddress) {
+    public Caller(String localNick, SocketAddress remoteAddress) {
         this.localNick=localNick;
         this.remoteAddress=remoteAddress;
     }
 
-    public Caller(java.lang.String localNick, java.lang.String ip){
+    public Caller(String localNick, String ip){
         this.localNick=localNick;
         this.ip=ip;
     }
@@ -40,21 +41,33 @@ public class Caller {
         this.ip = ip;
     }
 
-    static enum CallStatus {
-        BUSY, NO_SERVICE, NOT_ACCeSIBLE, OK, REJECTED
+    public Socket getSocket() {
+        return s;
+    }
+    public void setSocket(Socket s){
+        this.s=s;
     }
 
-    Connection call(Connection call) throws IOException {
-        try {
-            Socket socket = new Socket();
-            socket.connect(this.remoteAddress);
-            Connection connection = new Connection(socket);
-            connection.sendNickHello(localNick);
+
+    static enum CallStatus {
+        BUSY, NO_SERVICE, NOT_ACCESSIBLE, OK, REJECTED
+    }
+
+    Connection call() throws IOException {
+        s =new Socket(ip, 28411);
+        Connection connection = new Connection(s);
+        connection.sendNickHello(localNick);
+        Command command = connection.receive();
+
+        if (command.getClass().equals(NickCommand.class)) {
+
+            remoteNick = ((NickCommand) command).getNick();
             return connection;
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        }else{
             return null;
         }
+
     }
 
     public java.lang.String getLocalNick(){
