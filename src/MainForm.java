@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.Socket;
 
 public class MainForm extends  JFrame {
     private JPanel panel1;
@@ -15,15 +16,15 @@ public class MainForm extends  JFrame {
     private JButton applyButton;
     private JButton sendButton;
     private JTextField messageField;
-    private JScrollBar scrollBar1;
     private JTextArea textArea1;
+    private JScrollBar scrollBar1;
+    public static String localNick;
 
     CommandListenerThread comServer;
     CommandListenerThread comClient;
     Connection connect;
     Caller call;
     CallListener callListener;
-
 
     public MainForm(){
         setContentPane(panel1);
@@ -38,12 +39,14 @@ public class MainForm extends  JFrame {
         applyButton.setEnabled(false);
         sendButton.setEnabled(false);*/
 
+//        textArea1.add(scrollBar1);
+
 
         connectButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (connect != null) {
                     try {
-                        connect.sendNickHello(callListener.getLocalNick());
+                        connect.sendNickHello(MainForm.localNick);
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -51,9 +54,17 @@ public class MainForm extends  JFrame {
                     new Thread(new Runnable() {
 
                         public void run() {
-                            call = new Caller(callListener.getLocalNick(), remaddr.getText());
+                            call = new Caller(localNick, remaddr.getText());
                             try {
-                                connect.sendNickHello(callListener.getLocalNick());
+                                connect=call.call();
+                                Socket s = call.getSocket();
+                                connect.setSocket(s);
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                            try {
+                                connect.sendNickHello(localNick);
+                                textArea1.setText("Connected");
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
@@ -67,6 +78,7 @@ public class MainForm extends  JFrame {
         disconnectButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+
                     connect.disconnect();
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -91,9 +103,12 @@ public class MainForm extends  JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(!messageField.getText().equals("")){
                     try {
+
+                        textArea1.append(messageField.getText()+"\n");
+                        connect.sendMessage(messageField.getText());
                         textArea1.append(messageField.getText()+"\n");
                         messageField.setText("");
-                        connect.sendMessage(messageField.getText());
+
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -113,7 +128,8 @@ public class MainForm extends  JFrame {
         applyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (!loclog.getText().isEmpty()) {
-                    call.setLocalNick(loclog.getText());
+                    MainForm.localNick = loclog.getText();
+                   // call.setLocalNick(loclog.getText());
                     /*connectButton.setEnabled(true);
                     remaddr.setEnabled(true);
                     remlog.setEnabled(true);
@@ -124,7 +140,7 @@ public class MainForm extends  JFrame {
                         public void run() {
                             try {
                                 callListener= new CallListener();
-                                callListener.setLocalNick(call.getLocalNick());
+                                callListener.setLocalNick(MainForm.localNick);
                                 comServer = new CommandListenerThread(callListener.getConnection());
                                 comServer.start();
                             } catch (IOException e1) {
