@@ -13,10 +13,11 @@ public class Connection {
     private static final char nextL = '\n';
 
 
+
     public Connection(Socket s) throws IOException {
         this.socket = s;
-       // in = new DataInputStream(s.getInputStream());
-      //  out = new DataOutputStream(s.getOutputStream());
+        in = new DataInputStream(s.getInputStream());
+        out = new DataOutputStream(s.getOutputStream());
 
     }
 
@@ -41,7 +42,8 @@ public class Connection {
     }
 
     public void sendNickHello( String nick) throws IOException { //
-        socket.getOutputStream().write(("ChatApp 2015 user "+ nick + "\n").getBytes(CODING));
+        out.write(("ChatApp 2015 user "+ nick + "\n").getBytes(CODING));
+
     }
 
     public void sendNickBusy(String nick) throws IOException{
@@ -58,8 +60,8 @@ public class Connection {
     }
 
     public void sendMessage(String mes) throws IOException {
-        socket.getOutputStream().write(("Message\n").getBytes(CODING));
-        socket.getOutputStream().write(mes.getBytes());
+        out.write(("Message\n").getBytes(CODING));
+        out.write(mes.getBytes());
     }
 
     public void disconnect() throws IOException {
