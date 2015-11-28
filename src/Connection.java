@@ -74,7 +74,7 @@ public class Connection {
         socket.close();
     }
 
-    public Command receive() throws IOException{
+   /* public Command receive() throws IOException{
         StringBuffer sb = new StringBuffer();
         char ch;
       //  Command command;
@@ -93,6 +93,40 @@ public class Connection {
         }else if (str.toUpperCase().lastIndexOf("ED")>-1)
             str = str.toUpperCase().replace("ED","");
         return new Command(Command.CommandType.valueOf(str));
+    }*/
+
+
+    public Command receive() throws IOException {
+        String str = "";
+        Command comand;
+        int n;
+        while (true) {
+            if((n = in.read()) == '\n') {
+                break;
+            } else
+                str += (char) n;
+        }
+        comand = new Command(str.toUpperCase());
+        if (str.startsWith("ChatApp")) {
+            if (str.endsWith("busy")){
+                //command for nickname busy
+            }
+            else{
+                //command for nickname
+                comand = new Command("Nick");}
+        }
+
+        if(str.toUpperCase().equals("MESSAGE")) {
+            String message = "";
+            while (true) {
+                if((n = in.read()) == '\n')
+                    break;
+                else
+                    message += (char) n;
+            }
+            //command for message
+        }
+        return comand;
     }
 
 
