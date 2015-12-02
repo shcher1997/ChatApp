@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -18,6 +19,7 @@ public class MainForm extends  JFrame {
     private JTextField messageField;
     private JTextArea textArea1;
     private JScrollBar scrollBar1;
+    private JTable table1;
     public static String localNick;
 
     CommandListenerThread comServer;
@@ -31,6 +33,19 @@ public class MainForm extends  JFrame {
         setTitle("Incoming connection");
         setSize(700, 600);
         setVisible(true);
+
+        String[] columnNames = {"Nick","IP"};
+
+
+        Object[][] data = {
+                {"Evhen","192.64.0.14"
+                }
+        };
+
+     //   Container c = getContentPane();
+        panel1.add(table1);
+        table1 = new JTable(data,columnNames);
+      //  c.add(new JScrollPane(table1));
         /*loclog.setEnabled(false);
         connectButton.setEnabled(false);
         disconnectButton.setEnabled(false);
@@ -40,6 +55,7 @@ public class MainForm extends  JFrame {
         sendButton.setEnabled(false);*/
 
 //        textArea1.add(scrollBar1);
+
 
 
         connectButton.addActionListener(new ActionListener() {
