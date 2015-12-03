@@ -41,6 +41,7 @@ public class CommandListenerThread extends Observable implements Runnable {
                 notifyObservers();
             } catch (IOException e) {
                 e.printStackTrace();
+                //
             }
         }
 
