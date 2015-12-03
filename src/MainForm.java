@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,8 @@ public class MainForm extends  JFrame {
     Connection connect;
     Caller call;
     CallListener callListener;
+    String[][] contact = new String[10][2];
+    DefaultTableModel table_model;
 
     public MainForm(){
         setContentPane(panel1);
@@ -43,8 +46,9 @@ public class MainForm extends  JFrame {
         };
 
      //   Container c = getContentPane();
-        panel1.add(table1);
-        table1 = new JTable(data,columnNames);
+        this.table_model = new DefaultTableModel(contact, new String[]{"Nick", "IP"});
+        //panel1.add(table1);
+        table1 = new JTable(this.table_model);
       //  c.add(new JScrollPane(table1));
         /*loclog.setEnabled(false);
         connectButton.setEnabled(false);
