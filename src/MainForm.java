@@ -44,7 +44,7 @@ public class MainForm extends  JFrame {
                 {"Evhen","192.64.0.14"
                 }
         };
-
+///
      //   Container c = getContentPane();
         this.table_model = new DefaultTableModel(contact, new String[]{"Nick", "IP"});
         //panel1.add(table1);
