@@ -44,21 +44,13 @@ public class MainForm extends  JFrame {
                 {"Evhen","192.64.0.14"
                 }
         };
-///
+
      //   Container c = getContentPane();
         this.table_model = new DefaultTableModel(contact, new String[]{"Nick", "IP"});
         //panel1.add(table1);
         table1 = new JTable(this.table_model);
       //  c.add(new JScrollPane(table1));
-        /*loclog.setEnabled(false);
-        connectButton.setEnabled(false);
-        disconnectButton.setEnabled(false);
-        remlog.setEnabled(false);
-        remaddr.setEnabled(false);
-        applyButton.setEnabled(false);
-        sendButton.setEnabled(false);*/
 
-//        textArea1.add(scrollBar1);
 
 
 
@@ -117,7 +109,6 @@ public class MainForm extends  JFrame {
                 call.setIp(remaddr.getText());
             }
         });
-        //this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         sendButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -149,12 +140,6 @@ public class MainForm extends  JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (!loclog.getText().isEmpty()) {
                     MainForm.localNick = loclog.getText();
-                   // call.setLocalNick(loclog.getText());
-                    /*connectButton.setEnabled(true);
-                    remaddr.setEnabled(true);
-                    remlog.setEnabled(true);
-                    loclog.setEnabled(false);
-                    applyButton.setEnabled(false);*/
 
                     Runnable runnable = new Runnable() {
                         public void run() {
