@@ -76,7 +76,7 @@ public class MainForm extends  JFrame {
                             }
                             try {
                                 connect.sendNickHello(localNick);
-                                textArea1.setText("Connected");
+                                textArea1.setText("Connected"+"\n");
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
