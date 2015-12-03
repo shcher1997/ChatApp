@@ -74,7 +74,7 @@ public class Connection {
         socket.close();
     }
 
-   /* public Command receive() throws IOException{
+     public Command receive() throws IOException{
         StringBuffer sb = new StringBuffer();
         char ch;
       //  Command command;
@@ -84,7 +84,7 @@ public class Connection {
         if(str.toUpperCase().startsWith("CHATAPP 2015 USER")){
             Scanner sc = new Scanner(str);
             sc.next();
-            return new NickCommand(sc.next(),sc.skip("[a-z,A_Z]{4}").next(),str.toUpperCase().endsWith("BUSY"));
+            return new NickCommand(sc.next(),sc.next(),str.toUpperCase().endsWith("BUSY"));
         }else if("MESSAGE".equalsIgnoreCase(str)){
             sb = new StringBuffer();
             while ((ch = (char)in.readByte())!=nextL)
@@ -93,41 +93,17 @@ public class Connection {
         }else if (str.toUpperCase().lastIndexOf("ED")>-1)
             str = str.toUpperCase().replace("ED","");
         return new Command(Command.CommandType.valueOf(str));
-    }*/
-
-
-    public Command receive() throws IOException {
-        String str = "";
-        Command comand;
-        int n;
-        while (true) {
-            if((n = in.read()) == '\n') {
-                break;
-            } else
-                str += (char) n;
-        }
-        comand = new Command(str.toUpperCase());
-        if (str.startsWith("ChatApp")) {
-            if (str.endsWith("busy")){
-                //command for nickname busy
-            }
-            else{
-                //command for nickname
-                comand = new Command("Nick");}
-        }
-
-        if(str.toUpperCase().equals("MESSAGE")) {
-            String message = "";
-            while (true) {
-                if((n = in.read()) == '\n')
-                    break;
-                else
-                    message += (char) n;
-            }
-            //command for message
-        }
-        return comand;
     }
+
+    /*public Command receive() throws IOException{
+        Scanner sc = new Scanner(System.in);
+        String a,b,c,d;
+        a= sc.next();
+        b = sc.next();
+        c = sc.next();
+        d = sc.next();
+
+    }*/
 
 
 }
