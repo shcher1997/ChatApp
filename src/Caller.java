@@ -11,7 +11,7 @@ public class Caller {
     private boolean status;
     private String ip;
     private String CallStatus;
-    private Socket s;
+    private Socket socket;
 
 
 
@@ -42,10 +42,10 @@ public class Caller {
     }
 
     public Socket getSocket() {
-        return s;
+        return socket;
     }
     public void setSocket(Socket s){
-        this.s=s;
+        this.socket=s;
     }
 
 
@@ -54,21 +54,21 @@ public class Caller {
     }
 
     Connection call() throws IOException {
-        s =new Socket(ip, 28411);
-        Connection connection = new Connection(s);
-        connection.sendNickHello(localNick);
-        Command command = connection.receive();
+        socket = new Socket(ip, 28411);
+        Connection connection = new Connection(socket);
+       // connection.sendNickHello(localNick);
+       // Command command = connection.receive();
 
-        if (command.getClass().equals(NickCommand.class)) {
+    /*    if (command.getClass().equals(NickCommand.class)) {
 
-            remoteNick = ((NickCommand) command).getNick();
+            remoteNick = ((NickCommand) command).getNick();*/
             return connection;
 
-        }else{
-            return null;
-        }
+        }//else{
+          //  return null;
+      //  }
 
-    }
+
 
     public java.lang.String getLocalNick(){
         return localNick;
