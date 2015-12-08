@@ -74,7 +74,7 @@ public class Connection {
         socket.close();
     }
 
-     public Command receive() throws IOException{
+    public Command receive() throws IOException{
         StringBuffer sb = new StringBuffer();
         char ch;
       //  Command command;
@@ -83,8 +83,12 @@ public class Connection {
         String str = sb.toString();
         if(str.toUpperCase().startsWith("CHATAPP 2015 USER")){
             Scanner sc = new Scanner(str);
-            sc.next();
-            return new NickCommand(sc.next(),sc.next(),str.toUpperCase().endsWith("BUSY"));
+            String a,b,c,d;
+            a= sc.next();
+            b = sc.next();
+            c = sc.next();
+            d = sc.next();
+            return new NickCommand(b,d,str.toUpperCase().endsWith("BUSY"));
         }else if("MESSAGE".equalsIgnoreCase(str)){
             sb = new StringBuffer();
             while ((ch = (char)in.readByte())!=nextL)
@@ -94,24 +98,14 @@ public class Connection {
             str = str.toUpperCase().replace("ED","");
         return new Command(Command.CommandType.valueOf(str));
     }
- /*   public Command receive() throws IOException{
+    /*public Command receive() throws IOException{
         Scanner sc = new Scanner(System.in);
-        String a,b,c,d,st;
-        st = "";
+        String a,b,c,d;
         a= sc.next();
         b = sc.next();
         c = sc.next();
         d = sc.next();
-        char ch;
-        String str = a + " " + b + " " + c + " " + d;
-        System.out.println(str);
-        if (str.startsWith("MESSAGE")){
-            while ((ch = (char)in.readByte())!=nextL){
-              st = sc.next();
-            }
-        }
-        return new MessageCommand(st);
-....
+        return new Command(h );
 
     }*/
 
