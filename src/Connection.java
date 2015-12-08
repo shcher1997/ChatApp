@@ -74,7 +74,7 @@ public class Connection {
         socket.close();
     }
 
-   /*  public Command receive() throws IOException{
+     public Command receive() throws IOException{
         StringBuffer sb = new StringBuffer();
         char ch;
       //  Command command;
@@ -93,17 +93,27 @@ public class Connection {
         }else if (str.toUpperCase().lastIndexOf("ED")>-1)
             str = str.toUpperCase().replace("ED","");
         return new Command(Command.CommandType.valueOf(str));
-    }*/
-    public Command receive() throws IOException{
+    }
+ /*   public Command receive() throws IOException{
         Scanner sc = new Scanner(System.in);
-        String a,b,c,d;
+        String a,b,c,d,st;
+        st = "";
         a= sc.next();
         b = sc.next();
         c = sc.next();
         d = sc.next();
-        return new Command(h )
+        char ch;
+        String str = a + " " + b + " " + c + " " + d;
+        System.out.println(str);
+        if (str.startsWith("MESSAGE")){
+            while ((ch = (char)in.readByte())!=nextL){
+              st = sc.next();
+            }
+        }
+        return new MessageCommand(st);
+....
 
-    }
+    }*/
 
 
 }
