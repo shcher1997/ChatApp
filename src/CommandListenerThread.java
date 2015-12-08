@@ -39,6 +39,7 @@ public class CommandListenerThread extends Observable implements Runnable {
                 this.lastCom = connect.receive();
                 setChanged();
                 notifyObservers();
+                isDisconnected = true;
             } catch (IOException e) {
                 e.printStackTrace();
                 //
