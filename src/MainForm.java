@@ -71,6 +71,8 @@ public class MainForm extends  JFrame {
                                 connect=call.call();
                                 Socket s = call.getSocket();
                                 connect.setSocket(s);
+                                //=cal.call();
+                                comClient = new CommandListenerThread(connect);
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
@@ -78,7 +80,7 @@ public class MainForm extends  JFrame {
                                 connect.sendNickHello(localNick);
                                 textArea1.setText("Connected"+"\n");
                             } catch (IOException e1) {
-                                e1.printStackTrace();
+                                 e1.printStackTrace();
                             }
                             comClient.start();
                         }
