@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.net.*;
 
@@ -7,13 +5,12 @@ import java.net.*;
 public class Caller {
     private String localNick;
     private SocketAddress remoteAddress;
-    private String remoteNick;
+    static String remoteNick;
     private boolean status;
     private String ip;
     private String CallStatus;
     private Socket socket;
-
-
+    static String remoteN;
 
     public Caller(){
         remoteNick = "localNick";
@@ -37,7 +34,7 @@ public class Caller {
         this.remoteNick = remoteNick;
     }
 
-    public void setIp(java.lang.String ip){
+    public void setIp(String ip){
         this.ip = ip;
     }
 

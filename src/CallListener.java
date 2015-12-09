@@ -9,7 +9,7 @@ import java.net.*;
 public class CallListener extends java.lang.Object{
     public static final int localPort = 28411;
     private String localNick;
-    private String remoteNick;
+    static String remoteNick;
     private String localIp;
     private boolean busy;
     private SocketAddress remoteAddress, listenAddress;
@@ -17,6 +17,7 @@ public class CallListener extends java.lang.Object{
     CallListener(){
         this.localNick=localNick;
         this.localIp="127.0.0.1";
+
        // this.localIp = "172.16.48.102";
     }
 
@@ -54,7 +55,7 @@ public class CallListener extends java.lang.Object{
         return listenAddress;
     }
 
-    public java.lang.String getRemoteNick() {
+    public String getRemoteNick() {
         return remoteNick;
     }
 
