@@ -99,6 +99,8 @@ public class Connection {
             return new MessageCommand(str.toString());*/
         }else if (str.toUpperCase().lastIndexOf("ED")>-1)
             str = str.toUpperCase().replace("ED","");
+
+        
         return new Command(Command.CommandType.valueOf(str));
     }
     /*public Command receive() throws IOException{
