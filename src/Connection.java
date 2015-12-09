@@ -60,7 +60,7 @@ public class Connection {
     }
 
     public void sendMessage(String mes) throws IOException {
-        out.write(("Message\n").getBytes(CODING));
+        out.write(("MESSAGE\n").getBytes(CODING));
         out.write(mes.getBytes(CODING));
     }
 
@@ -90,10 +90,13 @@ public class Connection {
             d = sc.next();
             return new NickCommand(b,d,str.toUpperCase().endsWith("BUSY"));
         }else if("MESSAGE".equalsIgnoreCase(str)){
-            sb = new StringBuffer();
+               sb = new StringBuffer();
             while ((ch = (char)in.readByte())!=nextL)
                 sb.append(ch);
             return new MessageCommand(sb.toString());
+         /*   Scanner sc = new Scanner(System.in);
+            str = sc.next();
+            return new MessageCommand(str.toString());*/
         }else if (str.toUpperCase().lastIndexOf("ED")>-1)
             str = str.toUpperCase().replace("ED","");
         return new Command(Command.CommandType.valueOf(str));
