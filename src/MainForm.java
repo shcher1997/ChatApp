@@ -7,8 +7,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Observable;
+import java.util.Observer;
 
-public class MainForm extends  JFrame {
+public class MainForm extends  JFrame implements Observer{
     private JPanel panel1;
     private JButton disconnectButton;
     private JButton connectButton;
@@ -72,20 +74,18 @@ public class MainForm extends  JFrame {
                                 Socket s = call.getSocket();
                                 connect.setSocket(s);
                                 //=cal.call();
-//<<<<<<< Updated upstream
                                 comClient = new CommandListenerThread(connect);
-                                System.out.println(comClient.getLastCommand().toString());
-                                textArea1.setText(comClient.getLastCommand().toString());
-//=======
+                                textArea1.setText(comClient.getLastCommand().toString()+"\n");
+                                //System.out.println(comClient.getLastCommand().toString());
+
                                 //  comClient = new CommandListenerThread(connect);
-//>>>>>>> Stashed changes
+
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
 
                             try {
                                 connect.sendNickHello(localNick);
-//<<<<<<< Updated upstream
                                 textArea1.append("Connected" + "\n");
 
                             } catch (IOException e1) {
@@ -174,5 +174,10 @@ public class MainForm extends  JFrame {
 
     public static void main (String [] args){
         new MainForm();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
