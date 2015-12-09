@@ -96,7 +96,6 @@ public class Connection {
             return new MessageCommand(sb.toString());
          /*   Scanner sc = new Scanner(System.in);
             str = sc.next();
-
             return new MessageCommand(str.toString());*/
         }else if (str.toUpperCase().lastIndexOf("ED")>-1)
             str = str.toUpperCase().replace("ED","");
