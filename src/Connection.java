@@ -62,10 +62,13 @@ public class Connection {
     public void sendMessage(String mes) throws IOException {
         out.write(("MESSAGE\n").getBytes(CODING));
         out.write(mes.getBytes(CODING));
+        
     }
 
     public void disconnect() throws IOException {
         socket.getOutputStream().write(("Disconnect\n").getBytes(CODING));
+    //    socket.close();        //закр сокет MainForm
+        close();    //!!!!!!!!
     }
 
     public void close() throws IOException {
@@ -100,7 +103,7 @@ public class Connection {
         }else if (str.toUpperCase().lastIndexOf("ED")>-1)
             str = str.toUpperCase().replace("ED","");
 
-        
+
         return new Command(Command.CommandType.valueOf(str));
     }
     /*public Command receive() throws IOException{
