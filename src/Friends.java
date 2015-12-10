@@ -24,6 +24,8 @@ public class Friends {
             file.writeUTF(hm.get(itr.next()));
         }
 
+
+        
     }
 
     private HashMap<String,String> getNicks(RandomAccessFile file) throws IOException {
