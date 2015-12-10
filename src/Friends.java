@@ -25,7 +25,7 @@ public class Friends {
         }
 
 
-        
+
     }
 
     private HashMap<String,String> getNicks(RandomAccessFile file) throws IOException {
