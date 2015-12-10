@@ -11,6 +11,7 @@ public class History extends Observable {
         arrayListMessages = new ArrayList<Message>();
     }
 
+    
     class Message {
         private String nick;
         private Date date;
