@@ -11,10 +11,6 @@ public class NickCommand extends Command{
         this.version = version;
     }
 
-   public NickCommand(){
-       super();
-   }
-
     public String toString(){
         if (busy)
             return version + " user " + nick + " busy";

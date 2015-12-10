@@ -1,3 +1,5 @@
+import javafx.application.Application;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -7,6 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -25,10 +28,12 @@ public class MainForm extends  JFrame implements Observer{
     private JTable table1;
     public static String localNick;
 
+    //private Application logicModel;
+
+
     CommandListenerThread comServer;
     CommandListenerThread comClient;
     Connection connect;
-
     Caller call;
     CallListener callListener;
     String[][] contact = new String[10][2];
@@ -54,6 +59,9 @@ public class MainForm extends  JFrame implements Observer{
         table1 = new JTable(this.table_model);
         //  c.add(new JScrollPane(table1));
 
+
+
+
         connectButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (connect != null) {
@@ -64,6 +72,7 @@ public class MainForm extends  JFrame implements Observer{
                     }
                 } else {
                     new Thread(new Runnable() {
+
                         public void run() {
                             call = new Caller(localNick, remaddr.getText());
                             try {
@@ -74,13 +83,17 @@ public class MainForm extends  JFrame implements Observer{
                                 comClient = new CommandListenerThread(connect);
                                 textArea1.setText(comClient.getLastCommand().toString()+"\n");
                                 //System.out.println(comClient.getLastCommand().toString());
+
                                 //  comClient = new CommandListenerThread(connect);
+
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
+
                             try {
                                 connect.sendNickHello(localNick);
                                 textArea1.append("Connected" + "\n");
+
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
@@ -94,6 +107,7 @@ public class MainForm extends  JFrame implements Observer{
         disconnectButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+
                     connect.disconnect();
                 } catch (IOException e1) {
                     e1.printStackTrace();
@@ -118,10 +132,11 @@ public class MainForm extends  JFrame implements Observer{
                 if(!messageField.getText().equals("")){
                     try {
                         connect.sendMessage(messageField.getText());
-                        connect.sendMessage(messageField.getText());
                         textArea1.append(messageField.getText()+"\n");
-                         // textArea1.append(messageField.getText()+"\n");
+
+                        //  textArea1.append(messageField.getText()+"\n");
                         messageField.setText("");
+
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
@@ -142,6 +157,7 @@ public class MainForm extends  JFrame implements Observer{
             public void actionPerformed(ActionEvent e) {
                 if (!loclog.getText().isEmpty()) {
                     MainForm.localNick = loclog.getText();
+
                     Runnable runnable = new Runnable() {
                         public void run() {
                             try {

@@ -1,6 +1,7 @@
 import java.sql.Connection;
-import java.sql.*;
-import java.util.*;
+
+        import java.sql.*;
+        import java.util.*;
 
 public class ServerConnection {
 
@@ -241,3 +242,4 @@ public class ServerConnection {
         System.out.println("Other port: " + c.getPortForNick(nick2));
     }// main
 }
+

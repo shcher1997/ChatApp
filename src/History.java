@@ -7,11 +7,11 @@ public class History extends Observable {
 
     private ArrayList<Message> arrayListMessages;
 
+
     History(){
         arrayListMessages = new ArrayList<Message>();
     }
 
-    
     class Message {
         private String nick;
         private Date date;
