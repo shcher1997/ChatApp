@@ -17,8 +17,6 @@ public class CallListener extends java.lang.Object{
     CallListener(){
         this.localNick=localNick;
         this.localIp="127.0.0.1";
-
-       // this.localIp = "172.16.48.102";
     }
 
     public CallListener(String localNick) {
