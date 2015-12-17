@@ -106,16 +106,7 @@ public class Connection {
 
         return new Command(Command.CommandType.valueOf(str));
     }
-    /*public Command receive() throws IOException{
-        Scanner sc = new Scanner(System.in);
-        String a,b,c,d;
-        a= sc.next();
-        b = sc.next();
-        c = sc.next();
-        d = sc.next();
-        return new Command(h );
 
-    }*/
 
 
 }
