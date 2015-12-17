@@ -42,7 +42,7 @@ public class CommandListenerThread extends Observable implements Runnable {
                 isDisconnected = true;
             } catch (IOException e) {
                 e.printStackTrace();
-                //
+                //Нужно переделать поток
             }
         }
 
