@@ -50,7 +50,9 @@ public class MainForm extends  JFrame implements Observer{
 
         Object[][] data = {
                 {"Evhen","192.64.0.14"
+
                 }
+                //
         };
 
         //   Container c = getContentPane();
@@ -79,10 +81,8 @@ public class MainForm extends  JFrame implements Observer{
                                 connect=call.call();
                                 Socket s = call.getSocket();
                                 connect.setSocket(s);
-                                //=cal.call();
                                 comClient = new CommandListenerThread(connect);
                                 textArea1.setText(comClient.getLastCommand().toString()+"\n");
-                                //System.out.println(comClient.getLastCommand().toString());
 
                                 //  comClient = new CommandListenerThread(connect);
 
@@ -131,10 +131,11 @@ public class MainForm extends  JFrame implements Observer{
             public void actionPerformed(ActionEvent e) {
                 if(!messageField.getText().equals("")){
                     try {
+
+                        //textArea1.append(messageField.getText()+"\n");
+
                         connect.sendMessage(messageField.getText());
                         textArea1.append(messageField.getText()+"\n");
-
-                        //  textArea1.append(messageField.getText()+"\n");
                         messageField.setText("");
 
                     } catch (IOException e1) {
